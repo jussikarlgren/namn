@@ -1,4 +1,5 @@
-$threshold = 100;
+$listoutput=0;
+$threshold = 10;
 $minimum = 0.05;
 while (<>) {
     ($namn,$tilltal,$kon,$fodar,$fodelseforsamling,$fodelseort,$bostadsort,$antal) = split "\t";
@@ -29,8 +30,9 @@ for $namn (keys %freq) {
     $manT++    if ($manT{$namn} && ! $kvotT);
     $ambT++ if $kvotT;
     $ambfT += $freqT{$namn} if $kvotT;
-    
-    print "$namn\t$kvot\t$freq{$namn}\t$kvinna{$namn}\t$man{$namn}\t$kvotT\t$freqT{$namn}\t$kvinnaT{$namn}\t$manT{$namn}\n" if $kvotT; #($kvot || $kvotT); 
+    if ($listoutput) {
+	print "$namn\t$kvot\t$freq{$namn}\t$kvinna{$namn}\t$man{$namn}\t$kvotT\t$freqT{$namn}\t$kvinnaT{$namn}\t$manT{$namn}\n" if $kvotT; #($kvot || $kvotT);
+    }
 }
 print "$kvi $man $amb\n";
 print "$kviT $manT $ambT\n";
