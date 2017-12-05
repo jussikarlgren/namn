@@ -18,7 +18,8 @@
 open HH,"<ortlandsdel.lista";
 while(<HH>) {
     @hh = split;
-    $landsdel{$hh[0]} = $hh[1];
+    $landsdel{$hh[0]} = $hh[2];
+    $region{$hh[0]} = $hh[1];
 }
 close HH;
 $baratilltal = 0;
