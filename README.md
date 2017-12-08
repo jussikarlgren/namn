@@ -69,21 +69,75 @@ OM vi trösklar strikt blir det få kvar.
 Vi bör köra med
 1) alla namn vi har och tröskla endast på 1 2 eller så
 2) endast tilltalsnamn
-------------------------------------
-genus.perl räknar hur många som är manliga kvinnliga eller ambi. filtreras på minfrekv för att få bort knasnamn ($threshold) och på enstaka knasföräldras tilltag ($minimum)
-------------------------------------
-100:
-         kv   man  ambi
-alla:    2892 2247 479
-tilltal: 2520 2109 285
-------------------------------------
-10:
-         kv   man  ambi
-alla:    9503 7209 4510
-tilltal: 8852 7776 1725
-------------------------------------
+========================
+Kvinnligt-manligt
 
-NEEDS CHECKING
+genus.perl räknar hur många som är manliga kvinnliga eller ambi. filtreras på minfrekv för att få bort knasnamn ($threshold) och på enstaka knasföräldras tilltag ($minimum). Om mindre än $minimum (nedan 5%) av namnen är av det mindre representerade könet så räknas namnet som enkönat.
+TODO:
+1) gör kurva över $minimum (5% är taget ur en hatt) och kolla om det mer finns övervägande kvinnliga namn som ibland är manliga eller tvärtom. 
+2) kolla om detta varierar efter region och kommun och över tid
+
+------------------------------------
+0	0.05
+antal namn:	175387
+antal efter frekvensfiltrering:	175387
+	kv	man	ambi
+alla	87900	73833	13654
+tilltal	41113	31566	2586
+antal namn som oftare är ambi om de är andranamn: 12245
+antal namn som oftare är ambi om de är tilltalsnamn: 1246
+------------------------------------
+10	0.05
+antal namn:	175387
+efter filtrering: 19134
+	kv	man	ambi
+alla	8270	6354	4510
+tilltal	8382	7497	1725
+antal namn som oftare är ambi om de är andranamn: 3650
+antal namn som oftare är ambi om de är tilltalsnamn: 934
+------------------------------------
+100	0.05
+antal namn:	175387
+efter filtrering: 4307
+	kv	man	ambi
+alla	2105	1723	479
+tilltal	2107	1880	285
+antal namn som oftare är ambi om de är andranamn: 345
+antal namn som oftare är ambi om de är tilltalsnamn: 153
+===================================================================
+Plats:
+
+Först omformar vi Mickes platshierarki (hierarki.lista) till Ort Län(typ) Landsdel men det gör vi inte för det var för svårt. Just nu finns ingen länsnivå. Data finns i ortlandsdel.lista. För länsnivå måste vi lista ut länsindikerande mellannivåstäder av lagom pregnans. 
+
+Avstånd mellan landsdelar
+
+         Svealand Norrland Götaland Skåne
+Svealand 0	  500	   250	    500
+Norrland 500	  0	   750	    1000
+Götaland 250	  750	   0	    250
+Skåne	 500	  1000	   250	    0
+
+Avståndstabell (1) mellan kommuner och (2) mellan län måste göras
+===================================================================
+Knasighetsmått och kickar för namn
+
+Om ett namn förekommer mycket sparsamt i en population räknas namnet som knasigt. Detta kan vara hapax eller namn som finns högst N ggr i materialet där N måste sättas i relation till populationens storlek, eller eventuellt högst p% av alla namn i populationen. 
+
+Är ett namn ovanligt men ökar hastigt är det en kick. Om antalet individer med namnet är mycket fler i en ort än jämfört med andra orter eller hela populationen eller i en tidsperiod jämfört med alla tidsperioder är det en kick för namnet. 
+
+GIV EXEMPEL HÄR
+===================================================================
+Variationsbreddsmått för namn
+
+Vi vill kunna jämföra ort A och ort B eller tidperiod X och tidsperiod Y. Vi vill kunna avgöra hur många kreativa namn det finns på något ställe. Då behöver vi ett mått som berättar hur många olika namn ett stickprov (t ex en viss orts alla namn för en viss tidsperiod) innehåller, hur många i den mängden är knasiga dvs ovanliga (antingen lokalt eller för hela mängden), och ur många av populationen täcks av de N vanligaste namnen.
+
+1) En kurva: hur många olika namn krävs för att täcka k% av populationen?
+2) En skalär: hur många hapax eller knasiga namn
+3) En skalär: hur många olika namn
+4) En skalär: hur stor population (för att kunna normalisera (3) ovan)
+5) En skalär: avståndsmått från (1) till hela populationens motsvarande kurva.
+6) En skalär: var korsar kurva (1) hela populationens motsvarande kurva.
+
 
 ===================================================================
 1. toppighet i tid:
@@ -102,12 +156,19 @@ for d in 1920 1930 1940 1950 1960 1970 1980 1990 2000 2010; do sort frekvensTopp
 for d in 1920 1930 1940 1950 1960 1970 1980 1990 2000 2010; do sort frekvensToppW3.lista -k3 |grep $d > $d.w3; done
 for d in 1920 1930 1940 1950 1960 1970 1980 1990 2000 2010; do sort frekvensToppW5.lista -k3 |grep $d > $d.w5; done
 for d in 1920 1930 1940 1950 1960 1970 1980 1990 2000 2010; do sort frekvensToppW10.lista -k3 |grep $d > $d.w10; done
+---------------------------------
+(TID) Slutsats:
 
+(TIDb) Basdata: ser namnpaletterna olika ut över tid? Fler namn? Toppigare namn?
 
-platshierarki:
+(TIDd) Skillnad per decennium? Varierar något slags toppighetsmått över tid?
 
-först omformar vi mickes platshierarki (hierarki.lista) till
-ort län(typ) landsdel men det gör vi inte för det var för svårt. det blir ingen länsnivå. finns nu i ortlandsdel.lista. länsnivå måste vi lista ut länsindikerande mellannivåstäder av lagom pregnans. 
+(TIDg) Skillnad m/f?
+
+(TIDt) Skillnad t/a?
+
+===================================================================
+2. platshierarki:
 
 
 perl platstopp.perl namn.txt > platstoppighet.list
