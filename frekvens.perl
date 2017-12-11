@@ -1,21 +1,4 @@
 use Getopt::Std;
-
-#Carin   N       K       2011    Maria magd.     Stockholm       1
-#Carina          K       1956    Maria   Tingsryd        1
-#Carina  J       K       1944    Maria magd.     Tanum   1
-#Carina  J       K       1957    Maria   G�teborg        1
-#Carina  J       K       1957    Maria   Helsingborg     3
-
-#A:son	N	M	1948	Visby	Gotland	Knivsta	1
-#Aabo		M	1947	Enskede	Stockholm	Sollentuna	1
-#Aabraham		M	1991	Flemingsberg	Huddinge	Stockholm	1
-#Aaby	N	M	1969	Växjö	Växjö	Västervik	1
-#Aada-Elina	J	K	2004	Nedert.-hap	Haparanda	Haparanda	1
-#Aadel	N	M	2009	Karlskrona s	Karlskrona	Karlskrona	1
-#Aadhi	N	M	1971	Sävedalen	Partille	Göteborg	1
-#Aadhya	J	K	2013	Backa	Göteborg	Göteborg	1
-#Aadil		M	2013	Husby-ärl.	Sigtuna	Sigtuna	1
-
 $threshold = 100;
 $window = 5;
 $tilltalsfilter = 0;
@@ -63,11 +46,6 @@ while (<>) {
     next if ($decenniefilter && $decennium != $decenniefilter);
     $aar{$fodar}++;
     $frekv{$namn} += $antal;
-    $fodd{$fodar}{$namn} += $antal;
-    $decennielista{$decennium}++;
-    $foddd{$namn}{$decennium} += $antal;
-    $stann{$namn} += $antal if $fodelseort eq $bostadsort;
-    $stannd{$namn}{$decennium} += $antal if $fodelseort eq $bostadsort;
 }
 #==========================================================================
 # KATEGORISERA EFTER ORT ELLER DECENNIUM ETC
