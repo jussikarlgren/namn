@@ -134,9 +134,42 @@ Vi vill kunna jämföra ort A och ort B eller tidperiod X och tidsperiod Y. Vi v
 1) En kurva: hur många olika namn krävs för att täcka k% av populationen?
 2) En skalär: hur många hapax eller knasiga namn
 3) En skalär: hur många olika namn
+Filter: 100 ; 5 ; 100 ; 0 ; ;  ;  ; Norrland ;  2	932	1130180
+13778	22970	1221392 Filter: 100 ; 5 ; 100 ; 0 ; ;  ;  ; Svealand ;  
+21	2709	7475982 69055	114548	7930272
+Filter: 100 ; 5 ; 100 ; 0 ; ;  ;  ; Götaland ;  5	1710	3706489
+36860	62704	3962700 Filter: 100 ; 5 ; 100 ; 0 ; ;  ;  ; Skåne ;  
+13	1520	2577291
+32811	55813	2805435
+
+
 4) En skalär: hur stor population (för att kunna normalisera (3) ovan)
 5) En skalär: avståndsmått från (1) till hela populationens motsvarande kurva.
+
+distance.perl:
+
+Norrland 0.023380461776667
+Svealand 0.00144580604682019
+Götaland 0.0065107518470977
+Skåne    0.010749656367649
+
+1920 0.0371620574730963
+1930 0.015712994147647
+1940 0.00691681709457528
+1950 0.00655490839383312
+1960 0.0052424537754634
+1970 0.00657513395901768
+1980 0.00707458451787592
+1990 0.00795710977156919
+2000 0.0128889304921072
+2010 0.0264784999997633
+
+
 6) En skalär: var korsar kurva (1) hela populationens motsvarande kurva.
+
+
+
+
 
 
 ===================================================================
