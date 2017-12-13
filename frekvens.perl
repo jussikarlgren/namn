@@ -1,6 +1,5 @@
 use Getopt::Std;
 $threshold = 100;
-$window = 5;
 $tilltalsfilter = 0;
 $segment=100;
 #$landsdelsfilter = "Götaland";
@@ -12,10 +11,9 @@ $landsdelsfilter = $opt_l if $opt_l;
 $decenniefilter = $opt_d if $opt_d;
 $tilltalsfilter = $opt_t if $opt_t;
 $threshold = $opt_f if $opt_f;
-$window = $opt_w if $opt_w;
 $segment = $opt_s if $opt_s;
 
-print STDERR "Filter: $threshold ; $window ; $segment ; $tilltalsfilter ; $konfilter; $aldersfilter ; $fodelseortsfilter ; $landsdelsfilter ; $decenniefilter \n";
+print STDERR "Filter: $threshold ; $segment ; $tilltalsfilter ; $konfilter; $aldersfilter ; $fodelseortsfilter ; $landsdelsfilter ; $decenniefilter \n";
 
 open HH,"<data/ortlandsdel.lista";
 while(<HH>) {

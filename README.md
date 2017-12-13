@@ -128,6 +128,7 @@ Om ett namn förekommer mycket sparsamt i en population räknas namnet som knasi
 GIV EXEMPEL HÄR
 ===================================================================
 Variationsbreddsmått för namn
+frekvens.perl
 
 Vi vill kunna jämföra ort A och ort B eller tidperiod X och tidsperiod Y. Vi vill kunna avgöra hur många kreativa namn det finns på något ställe. Då behöver vi ett mått som berättar hur många olika namn ett stickprov (t ex en viss orts alla namn för en viss tidsperiod) innehåller, hur många i den mängden är knasiga dvs ovanliga (antingen lokalt eller för hela mängden), och ur många av populationen täcks av de N vanligaste namnen.
 
@@ -165,19 +166,35 @@ Skåne    0.010749656367649
 2010 0.0264784999997633
 
 
+<ONETAIL vs TWOTAIL>
+
 6) En skalär: var korsar kurva (1) hela populationens motsvarande kurva.
 
 
-
-
-
+<REMAINS TO BE CALCULATED>
 
 ===================================================================
-1. toppighet i tid:
+TOPPIGHET I TID
 
 "hur stor andel av namnets förekomster är inom ett visst tidsspann?"
 
-om spannet ($window i frekvens.perl) sätts till 1 är frågan alltså "hur stor andel av namnet är från ett visst år"; om spannet sätts till något större är det en eftersläpning för varje år bakåt med $window antal år, dvs antal förekomster från år T och $window år tidigare. detta ger ett visst fel i redovisningen för jag redovisar sedan per decennium och då har ju ett namn som har sin högsta andel år 1960 med fem års spann alltså peakat på femtitalet och alls icke på sextitalet. men det får vi reda ut senare.
+Om spannet ($window i frekvenstopp.perl) sätts till 1 är frågan alltså "hur stor andel av namnet är från ett visst år"; om spannet sätts till något större är det en eftersläpning för varje år bakåt med $window antal år, dvs antal förekomster från år T och $window år tidigare. detta ger ett visst fel i redovisningen för jag redovisar sedan per decennium och då har ju ett namn som har sin högsta andel år 1960 med fem års spann alltså peakat på femtitalet och alls icke på sextitalet. men det får vi reda ut senare.
+
+
+Exempel (w 5):
+Caspian	912	0.54	0.108	2013	2010	1920:0	1930:0	1940:0	1950:0	1960:0	1970:1	1980:5	1990:33	2000:300	2010:573	
+
+Var började då Caspian sin storhet?
+
+Caspian	Götaland	254	0.12	0.12	2011	2010	1970:0	1980:2	1990:9	2000:79	2010:164	
+Caspian	Norrland	43	0.16	0.16	2009	2000	1970:0	1980:0	1990:0	2000:20	2010:23	
+Caspian	Skåne		221	0.11	0.11	2013	2010	1970:1	1980:2	1990:7	2000:75	2010:136	
+Caspian	Svealand	394	0.14	0.14	2012	2010	1970:0	1980:1	1990:17	2000:126	2010:250	
+
+Norrland! Caspian toppar först i Norrland, redan 2009, enligt detta mått. Hmm. Måste kollas. 
+
+
+
 
 gör detta för 3, 5, 10 spann:
 
